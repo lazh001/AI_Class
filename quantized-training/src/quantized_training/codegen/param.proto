@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package codegen;
+
+message Memory {
+  int32 partition = 1;
+  int32 offset = 2;
+}
+
+message Permutation {
+  string node = 1;
+  string opcode = 2;
+  repeated int32 dims = 3;
+  repeated int32 input_shape = 4;
+  repeated int32 output_shape = 5;
+}
+
+message Tensor {
+  string node = 1;
+  string dtype = 2;
+  repeated int32 shape = 3;
+  float scale = 4;
+  Memory memory = 5;
+  Permutation permutation = 6;
+}
+
+message MXTensor {
+  Tensor input = 1;
+  Tensor scale = 2;
+}
+
+// Define message for elementwise operations
+message VectorParam {
+  string name = 1;
+  string opcode = 2;
+  oneof input_type {
+    Tensor input = 3;
+    float input_scalar = 4;
+  }
+  oneof other_type {
+    Tensor other = 5;
+    float other_scalar = 6;
+  }
+}
+
+// Define message for GEMM and layer norm
+message MatrixParam {
+  string name = 1;
+  string opcode = 2;
+  oneof input_type {
+    Tensor input = 3;
+    MXTensor mx_input = 4;
+  }
+  oneof weight_type {
+    Tensor weight = 5;
+    MXTensor mx_weight = 6;
+  }
+  Tensor bias = 7;
+  repeated int32 stride = 8;
+  repeated int32 padding = 9;
+  repeated int32 dilation = 10;
+  int32 groups = 11;
+}
+
+// Define message for pooling operations
+message PoolingParam {
+  string name = 1;
+  string opcode = 2;
+  Tensor input = 3;
+  repeated int32 kernel_size = 4;
+  repeated int32 stride = 5;
+  repeated int32 padding = 6;
+  repeated int32 dilation = 7;  // for max_pool
+  bool ceil_mode = 8;
+  bool count_include_pad = 9;   // for avg_pool
+  int32 divisor_override = 10;  // for avg_pool
+  repeated int32 output_size = 11;  // for adaptive_avg_pool2d
+}
+
+// Define message for reduction and softmax operations
+message ReduceParam {
+  string name = 1;
+  string opcode = 2;
+  Tensor input = 3;
+  repeated int32 dim = 4;
+  bool keepdim = 5;
+}
+
+// Define message for transpose and permute operations
+message ReshapeParam {
+  string name = 1;
+  string opcode = 2;
+  Tensor input = 3;
+  repeated int32 dims = 4;
+}
+
+message NopParam {
+  string name = 1;
+  string opcode = 2;
+  repeated Tensor inputs = 3;
+}
+
+// One of GEMM, reduction, or shape permutation operations
+message AcceleratorParam {
+  string name = 1;
+  oneof param_type {
+    MatrixParam matrix_param = 2;
+    PoolingParam pooling_param = 3;
+    ReduceParam reduce_param = 4;
+    ReshapeParam reshape_param = 5;
+    NopParam nop = 6;
+  }
+  repeated VectorParam vector_params = 7;
+  Tensor output = 8;
+}
+
+message ModelParams {
+    repeated AcceleratorParam params = 1;
+}

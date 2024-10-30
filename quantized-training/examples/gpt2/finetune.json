@@ -1,0 +1,48 @@
+{
+
+    "model_name_or_path": "/lamport/shared/hzheng/workspace/model/gpt2/",
+    "model_type": null,
+    "config_overrides" : "n_embd=768,n_layer=12,n_head=12",
+    "config_name": null,
+    "tokenizer_name": "/lamport/shared/hzheng/workspace/model/gpt2/",
+    "cache_dir": "/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/finetune_cache",
+    "use_fast_tokenizer": true,
+    "model_revision": "main",
+    "token": null,
+    "use_auth_token": null,
+    "trust_remote_code": false,
+    "torch_dtype": "float32",
+    "low_cpu_mem_usage": false,
+
+
+    "dataset_name": "/lamport/shared/hzheng/workspace/dataset/wikitext",
+    "dataset_config_name": "wikitext-103-raw-v1",
+    "train_file": null,
+    "validation_file": null,
+    "max_train_samples": null,
+    "max_eval_samples": null,
+    "streaming": false,
+    "block_size": 512,
+    "overwrite_cache": false,
+    "validation_split_percentage": 5,
+    "preprocessing_num_workers": 10,
+    "keep_linebreaks": true,
+
+
+    "output_dir": "/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/finetune_output",
+    "overwrite_output_dir": true,
+    "do_train": true,
+    "do_eval": true,
+    "per_device_train_batch_size": 8,
+    "per_device_eval_batch_size": 8,
+    "num_train_epochs": 5,
+    "learning_rate": 3e-4,
+    "logging_dir": "/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/finetune_logs",
+    "logging_steps": 1000,
+    "save_steps": 2000,
+    "evaluation_strategy": "steps",
+    "eval_steps": 1000,
+    "save_total_limit": 1,
+    "report_to": "tensorboard"
+
+}

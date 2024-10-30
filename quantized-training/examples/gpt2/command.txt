@@ -1,0 +1,12 @@
+srun -p makkapakka -c 10 --gpus=1 --output=./logs/test1.out --error=./logs/test1.err python test_gpt2.py  --max_length 1024 --stride 512
+
+srun -p makkapakka -c 10 --gpus=1 --output=./logs/test1.out --error=./logs/test1.err python /lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/test_gpt2.py  --max_length 1024 --stride 512
+
+srun -p makkapakka -c 10 --gpus=1 --output=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/test1.out --error=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/test1.err python /lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/test_gpt2.py  --max_length 1024 --stride 512
+
+srun -p makkapakka -c 10 --gpus=1 --output=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/minitest1.out --error=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/minitest1.err python /lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/minitest_gpt2.py
+
+
+srun -p makkapakka -c 10 --gpus=1 --output=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/train1.out --error=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/train1.err python /lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/train_gpt2.py /lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/train_cfg.json
+
+srun -p makkapakka -c 80 --gpus=5 --output=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/train1.out --error=/lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/logs/train1.err python /lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/train_gpt2.py /lamport/shared/hzheng/workspace/NNs/finetune/quantized-training/examples/gpt2/train_cfg.json
