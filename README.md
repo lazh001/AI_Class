@@ -20,7 +20,7 @@
         - [实验结果](#实验结果)
     - [说明](#说明)
 
-## Part1: Train a GPT2 from scratch
+## Part1: Train a GPT2 from scratch (hao zheng)
 本项目使用的框架来自于 **jeffreyyu0602/quantized-training (ASPLOS 2024)** [[link](https://github.com/jeffreyyu0602/quantized-training/tree/main)]
 
 ### 环境配置
@@ -86,7 +86,7 @@ quantized-training/examples/gpt2/logs目录下存放了模型训练、测试、�
 
 
 
-## Part2： Finetune our GPT2 using LoRA
+## Part2： Finetune our GPT2 using LoRA (jingxi chen)
 
 本项目使用https://github.com/microsoft/LoRA/作为参考库。
 
